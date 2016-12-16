@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+  db:
+    image: mysql:5.7
+    env_file:
+      - './docker.env'
+    # host volume
+    volumes:
+      - ./data/var/lib/mysql:/var/lib/mysql
+
+  web:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        CONCRETE5_VERSION: "5.7.5.2"
+    ports:
+      - "8080:80"
+    env_file:
+      - './docker.env'
+    links:
+      - db
+    # host volumes
+    volumes:
+      - ./data/etc/apache2:/etc/apache2
+      - ./data/var/www/html:/var/www/html
