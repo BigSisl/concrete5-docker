@@ -18,20 +18,29 @@ if [ ! -e '/var/www/html/concrete/config/concrete.php' ]; then
         ls -A 1>&2
     fi
     echo "[info] Concrete5 Version: ${CONCRETE5_VERSION}"
-    cp -r /usr/local/src/concrete${CONCRETE5_VERSION}/web/* /var/www/html
+
+    # Prepare copying data
+    toCopy=( \
+      "concrete" \
+      "index.php" \
+      "application" \
+      "packages" \
+      "updates" \
+    )
+
+    for copy in "${toCopy[@]}"
+    do
+       :
+       if [ -d usr/local/src/concrete${CONCRETE5_VERSION}/$copy ]; then
+         cp -r /usr/local/src/concrete${CONCRETE5_VERSION}/$copy/* /var/www/html/$copy
+       else
+         cp -r /usr/local/src/concrete${CONCRETE5_VERSION}/$copy /var/www/html/$copy
+       fi
+    done
 
     # change required permissions incl. for multi-lingual sites
-    chown -Rv root:www-data application/files/
-    chmod -Rv 775 application/files/
-    chown -Rv root:www-data application/config/
-    chmod -Rv 775 application/config/
-    chown -Rv root:www-data packages/
-    chmod -Rv 775 packages/
-    chown -Rv root:www-data updates/
-    chmod -Rv 775 updates/
-#    mkdir -v  application/languages/site
-#    chown -Rv root:www-data application/languages/site
-#    chmod -Rv 775 application/languages/site
+#    chown -Rv root:www-data application/files/
+#    chmod -Rv 775 application/files/
     echo "[info] copied Concrete5.7 and set permissions"
 fi
 

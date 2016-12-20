@@ -40,7 +40,7 @@ RUN chown -Rf concrete5:concrete5 $SRC_DIRECTORY
 USER concrete5
 
 # Install compose
-RUN cd $SRC_DIRECTORY/concrete${CONCRETE5_VERSION}/web/concrete && \
+RUN cd $SRC_DIRECTORY/concrete${CONCRETE5_VERSION} && \
     php /usr/local/bin/composer install
 
 USER root
