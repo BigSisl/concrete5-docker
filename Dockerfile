@@ -25,10 +25,6 @@ RUN apt-get update && \
     apt-get clean && rm -r /var/lib/apt/lists/* && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# for older concrete5 versions
-RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && \
-    sudo apt-get install -y nodejs
-
 # Copy apache2 conf dir
 # Perl script to enable ability to activate 'Pretty URLs' and redirection in .htaccess by 'AllowOverride'
 # - it matches a multi-line string and replaces 'None' with 'FileInfo'
@@ -49,17 +45,9 @@ RUN cd $SRC_DIRECTORY/concrete${CONCRETE5_VERSION}/web/concrete && \
 
 USER root
 
-RUN npm install -g grunt-cli && \
-    cd $SRC_DIRECTORY/concrete${CONCRETE5_VERSION}/build && \
-    npm install && \
-    grunt release
-
 # turn on short open tags for php
 RUN sed -i -e 's/short_open_tag = .*/short_open_tag = On/g' /etc/php5/cli/php.ini && \
     sed -i -e 's/short_open_tag = .*/short_open_tag = On/g' /etc/php5/apache2/php.ini
-
-#RUN cd $SRC_DIRECTORY/concrete${CONCRETE5_VERSION} && \
-#    php bincomposer.phar install
 
 EXPOSE 80 443
 WORKDIR /var/www/html

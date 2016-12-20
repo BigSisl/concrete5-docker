@@ -14,7 +14,7 @@ services:
       context: ./
       dockerfile: Dockerfile
       args:
-        CONCRETE5_VERSION: "5.7.5.2"
+        CONCRETE5_VERSION: "8.0.3"
     ports:
       - "8080:80"
     env_file:
