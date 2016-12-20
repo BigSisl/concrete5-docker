@@ -32,6 +32,18 @@ if [ ! -e '/var/www/html/concrete/config/concrete.php' ]; then
 #    mkdir -v  application/languages/site
 #    chown -Rv root:www-data application/languages/site
 #    chmod -Rv 775 application/languages/site
+
+    # start installation
+    concrete/bin/concrete5 c5:install \
+      --admin-password=$ADMIN_PASSWORD \
+      --db-server=db \
+      --db-username=$MYSQL_USER \
+      --db-password=$MYSQL_PASSWORD \
+      --db-database=$MYSQL_DATABASE \
+      --admin-email=$ADMIN_EMAIL \
+      --starting-point=$STARTING_POINT \
+      --site=$SITE
+
     echo "[info] copied Concrete5.7 and set permissions"
 fi
 
