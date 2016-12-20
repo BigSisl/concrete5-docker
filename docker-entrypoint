@@ -38,6 +38,16 @@ if [ ! -e '/var/www/html/concrete/config/concrete.php' ]; then
        fi
     done
 
+    concrete/bin/concrete5 c5:install \
+      --admin-password=$ADMIN_PASSWORD \
+      --db-server=db \
+      --db-username=$MYSQL_USER \
+      --db-password=$MYSQL_PASSWORD \
+      --db-database=$MYSQL_DATABASE \
+      --admin-email=$ADMIN_EMAIL \
+      --starting-point=$STARTING_POINT \
+      --site=$SITE
+
     # change required permissions incl. for multi-lingual sites
 #    chown -Rv root:www-data application/files/
 #    chmod -Rv 775 application/files/
