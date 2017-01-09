@@ -10,6 +10,8 @@ if [ ! "$(ls -A /etc/apache2)" ]; then
     echo "[info] copied apache2 configuration directory"
 fi
 
+# pull latest application folder
+
 # if Concrete5 is not yet installed, copy it into web root
 if [ ! -e '/var/www/html/concrete/config/concrete.php' ]; then
     cd /var/www/html/
@@ -52,7 +54,7 @@ if [ ! -e '/var/www/html/concrete/config/concrete.php' ]; then
     # change required permissions incl. for multi-lingual sites
 #    chown -Rv root:www-data application/files/
 #    chmod -Rv 775 application/files/
-    echo "[info] copied Concrete5.7 and set permissions"
+    echo "[info] copied Concrete5.8 and set permissions"
 fi
 
 # else default to run whatever the user wanted like "bash"
