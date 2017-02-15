@@ -12,6 +12,8 @@ fi
 
 # pull latest application folder
 
+# check if something is here for import TODO
+
 # if Concrete5 is not yet installed, copy it into web root
 if [ ! -e '/var/www/html/concrete/config/concrete.php' ]; then
     cd /var/www/html/

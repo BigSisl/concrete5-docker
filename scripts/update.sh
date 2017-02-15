@@ -14,6 +14,10 @@ DBNAME=
 DBUSR=
 DBPW=
 
+# updated new database information
+# POSSIBLE REGEX:
+#(return *\[[\n\t\ra-zA-Z \[\]\'-=>_,]*\'connections\' *=>[\n\t\ra-zA-Z \[\]\'-=>_,]*\'concrete\' *=>[\n\t\ra-zA-Z \[\]\'-=>_,]*\'server\' *=> *\')(.*)(\')
+
 # Prepare external Database
 
 

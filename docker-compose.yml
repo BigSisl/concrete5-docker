@@ -8,6 +8,19 @@ services:
     # host volume
     volumes:
       - ./data/var/lib/mysql:/var/lib/mysql
+      - ./import:/docker-entrypoint-initdb.d
+
+  sidekick:
+    build:
+      context: ./Sidekick
+      dockerfile: Dockerfile
+    env_file:
+      - './docker.env'
+    volumes:
+      - ./data/var/www/html:/data
+      - ./data/export:/export
+    links:
+      - db
 
   web:
     build:
