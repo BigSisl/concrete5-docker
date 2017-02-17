@@ -6,7 +6,7 @@
 #  - removes old mysql db
 #  - import new sql by .sql file
 
-folder=$1
+folder="$( pwd )"/$1
 data=data.zip
 sql=db.sql
 
